@@ -5,7 +5,7 @@ Cyclomatic Complexity Calculator Except Switch Case Structure
 
 Cyclomatic Complexity is a way to learn how complex is your code. It simply shown in a graphic kind of these:
 
-![alt text](https://www.gatevidyalay.com/wp-content/uploads/2020/02/Cyclomatic-Complexity-Problem-02-Solution-1.png 280w, https://www.gatevidyalay.com/wp-content/uploads/2020/02/Cyclomatic-Complexity-Problem-02-Solution-1-74x300.png 74w, https://www.gatevidyalay.com/wp-content/uploads/2020/02/Cyclomatic-Complexity-Problem-02-Solution-1-253x1024.png 253w)
+![alt text](https://www.gatevidyalay.com/wp-content/uploads/2020/02/Cyclomatic-Complexity-Problem-02-Solution-1.png 280w)
 
 So if you inspect well, there's a closed places where surrounded by edges and consisted by conditions and loops. That's what we searched for. We'll sum those places or 
 we'll sum conditions and loops on our code.
