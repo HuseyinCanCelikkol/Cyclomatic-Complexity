@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <istream>
+#include <ostream>
+
+
+using namespace std;
+ifstream Code;
+string rowOfCode;
+
+int main(){
+Code.open("sik.txt");
+
+getline(Code, rowOfCode, '\n'); // use ' ' as separator, default is '\n' (newline). Now name is "John".
+
+
+cout << rowOfCode << endl;
+  
+
+Code.close(); 
+}
