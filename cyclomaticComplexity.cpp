@@ -19,36 +19,36 @@ int main(){
 Code.open("temp.txt"); // open the txt
 
 while(!Code.eof()){
-    getline(Code, rowOfCode, '\n'); // dosyadaki her bir line ı al
-    rowOfCode.erase(remove_if(rowOfCode.begin(), rowOfCode.end(), ::isspace), rowOfCode.end()); // satırdaki boşlukları sil
-    //cout << rowOfCode << endl; 
+    getline(Code, rowOfCode, '\n'); // take each line on temp.txt
+    rowOfCode.erase(remove_if(rowOfCode.begin(), rowOfCode.end(), ::isspace), rowOfCode.end()); // delete whitespaces
+    //cout << rowOfCode << endl; //for printing your code
 
-   for(int rowIterator = 0;rowIterator<rowOfCode.length();rowIterator++){ // kelimenin i. harfi
+   for(int rowIterator = 0;rowIterator<rowOfCode.length();rowIterator++){ // i'th letter of row
         for(int keysIterator = 0;keysIterator<sizeof(KEYS)/STRING_SIZE;keysIterator++){
-            if(FoundKey == true){ // eğerki halihazırda bir yapı bulduysak (kelimeyi karşılaştırmaya devam etmesin)
+            if(FoundKey == true){ // if we found a key, it shouldn't continue to inspect current key. instead, it need to go find another one.
                 FoundKey = false;
                 break;
                 } 
-            if(KEYS[keysIterator][0] == rowOfCode[rowIterator]){
-                if(KEYS[keysIterator][0] == KEYS[3][0]){ // soru işaretini tanımıyor tek karakter olduğundan. o yüzden böyle bir koşul yazdım
+            if(KEYS[keysIterator][0] == rowOfCode[rowIterator]){// if that keys first letter hits with current letter
+                if(KEYS[keysIterator][0] == KEYS[3][0]){ // it cannot find ? operator. thats why i used that condition
                     cyclomaticComplexityVal++;
                     break;
                 }
                 
-            int rowIteratorForKeyTest = rowIterator+1; 
-            for(int letterOfKeyIterator = 1;letterOfKeyIterator<KEYS[keysIterator].length();letterOfKeyIterator++){ 
-                if(KEYS[keysIterator][letterOfKeyIterator] == rowOfCode[rowIteratorForKeyTest]){// keys in keysIterator. elemanının k. harfi de rowOfCode'nin devamıyla eşleşiyorsa
+            int tempRowIterator = rowIterator+1; // temp row iterator. If it finds a key, simply goes afterwards of found key.
+            for(int letterOfKeyIterator = 1;letterOfKeyIterator<KEYS[keysIterator].length();letterOfKeyIterator++){ // here we controlling key and letter if really meshes together
+                if(KEYS[keysIterator][letterOfKeyIterator] == rowOfCode[tempRowIterator]){// if continues to mesh, just control until end
                     
-                    if(letterOfKeyIterator == KEYS[keysIterator].length()-1 && KEYS[keysIterator].at(KEYS[keysIterator].length()-1) == rowOfCode[rowIteratorForKeyTest]){ // artık kelimenin son harfi de eşleşmeye devam ediyorsa
-                        cyclomaticComplexityVal++;
-                        rowIterator = rowIteratorForKeyTest+1;
-                        FoundKey = true;
-                        break;
+                    if(letterOfKeyIterator == KEYS[keysIterator].length()-1 && KEYS[keysIterator].at(KEYS[keysIterator].length()-1) == rowOfCode[tempRowIterator]){ // if last letter also meshes
+                        cyclomaticComplexityVal++; // increase complexity value
+                        rowIterator = tempRowIterator+1;// continue from afterwards of found key
+                        FoundKey = true; // yeah that's what you're searching for. if i don't put that condition it continues to iterate keys. I and nobody don't want that
+                        break; // go out from letter iteration
                     }
-                    rowIteratorForKeyTest++;
+                    tempRowIterator++;
 
                     }
-                    else{break;
+                    else{break; // if any of letter doesn't obey order, just break and go 
                     }
                 }
             }
@@ -57,8 +57,8 @@ while(!Code.eof()){
     }
 }
 
-cyclomaticComplexityVal = cyclomaticComplexityVal+1; // formülden ötürü
-cout << cyclomaticComplexityVal << endl;
+cyclomaticComplexityVal = cyclomaticComplexityVal+1; // formula = found complexity + 1 
+cout << cyclomaticComplexityVal << endl; // thats the value
 
-Code.close(); 
+Code.close(); // dont forget to close directory...
 }
