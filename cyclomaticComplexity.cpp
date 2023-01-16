@@ -6,13 +6,13 @@
 #include <algorithm>
 #include <cctype>
 
-#define KEY_VALUE 8
+#define KEY_SIZE 8
 #define STRING_SIZE 32
 bool FoundKey = false;
 using namespace std;
 ifstream Code;
 string rowOfCode;
-string KEYS[KEY_VALUE] = {"if(","while(","for(","?", "&&","||","case","default:"};
+string KEYS[KEY_SIZE] = {"if(","while(","for(","?", "&&","||","case","default:"};
 
 int cyclomaticComplexityVal = 0;
 int main(){
@@ -44,7 +44,7 @@ while(!Code.eof()){
                     if(letterOfKeyIterator == KEYS[keysIterator].length()-1 && KEYS[keysIterator].at(KEYS[keysIterator].length()-1) == rowOfCode[tempRowIterator]){ // if last letter also meshes
                     if(keysIterator==6){
                         for(int i = 0;i<rowOfCode.length()-tempRowIterator;i++){
-                            if(rowOfCode[tempRowIterator+i] == ':'){
+                            if(rowOfCode[tempRowIterator+i] == ':'){ // if finds : in same row after finding "case", it increases complexity +1.
                         cyclomaticComplexityVal++; // increase complexity value
                         rowIterator = tempRowIterator+1;// continue from afterwards of found key
                         FoundKey = true; // yeah that's what you're searching for. if i don't put that condition it continues to iterate keys. I and nobody don't want that
