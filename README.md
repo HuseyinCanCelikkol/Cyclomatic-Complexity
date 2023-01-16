@@ -1,5 +1,5 @@
 # Cyclomatic-Complexity
-Cyclomatic Complexity Calculator Except Switch Case Structure
+Cyclomatic Complexity Calculator
 
 # What's That?
 
