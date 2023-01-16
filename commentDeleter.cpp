@@ -20,21 +20,19 @@ int main(){
             }
             else if(rowOfCode[i] == '/' && rowOfCode[i+1] == '*'){
                 rowOfCode.erase(rowOfCode.begin()+i,rowOfCode.end());
-                bool mcl = true;
-                while(mcl){ // denemeye yarrağı
+                bool multiCommLine = true;
+                while(multiCommLine){
                     getline(Code, rowOfCode, '\n');
                     //cout << rowOfCode << endl;
                     for(int j = 0;j<rowOfCode.length();j++){
                         if(rowOfCode[j] == '*' && rowOfCode[j+1] == '/'){
                             rowOfCode.erase(rowOfCode.begin(),rowOfCode.begin()+(j+2));
-                            mcl = false;
+                            multiCommLine = false;
                         }
                         else if(j == rowOfCode.length() -1){
                             rowOfCode.erase(rowOfCode.begin(),rowOfCode.end());
                         }
-                        /*
-                        sik sik olaylar
-                        */
+
 
                     }
                 }
