@@ -5,23 +5,20 @@ Cyclomatic Complexity Calculator Except Switch Case Structure
 
 Cyclomatic Complexity is a way to learn how complex is your code. It simply shown in a graphic kind of these:
 
-<<<<<<< HEAD
+
 
 <img src="https://i.hizliresim.com/lt4knr1.png" alt="Alt text" title="Optional title">
-=======
-![alt text]([http://url/to/img.png](https://www.gatevidyalay.com/wp-content/uploads/2020/02/Cyclomatic-Complexity-Problem-02-Solution-1.png 280w, https://www.gatevidyalay.com/wp-content/uploads/2020/02/Cyclomatic-Complexity-Problem-02-Solution-1-74x300.png 74w, https://www.gatevidyalay.com/wp-content/uploads/2020/02/Cyclomatic-Complexity-Problem-02-Solution-1-253x1024.png 253w))
->>>>>>> parent of 037d71d (Update README.md)
 
 So if you inspect well, there's a closed places where surrounded by edges and consisted by conditions and loops. That's what we searched for. We'll sum those places or 
 we'll sum conditions and loops on our code.
 
 So that code just finds if, while, for,'?', "&&" operators to find complexity of your code. 
 
-I didn't add "switch case" condition structure to find now. Because when It's empty, you cannot count it as a complexity increaser.
+I add "switch case" condition structure to find now. 
 
 I thought like If we write a perfect code, after we can find of Its complexity. So that gives me good vibes about not struggling to mop up other code murderers back.
 
-and probably I'll write switch case analysis with keeping this info in my mind.
+So put "perfect" codes inside of temp.txt to find something logical or just go k*** y***
 
 Anyway, feel free to use that code. It really works well. I struggled with it so much (about 1-2 hours lmao)
 
