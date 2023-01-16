@@ -12,7 +12,7 @@ Cyclomatic Complexity is a way to learn how complex is your code. It simply show
 So if you inspect well, there's a closed places where surrounded by edges and consisted by conditions and loops. That's what we searched for. We'll sum those places or 
 we'll sum conditions and loops on our code.
 
-So that code just finds if, while, for,'?', "&&" operators to find complexity of your code. 
+So that code just finds if, while, for,'?', "&&", "||", case:, default:  operators to find complexity of your code. 
 
 I add "switch case" condition structure to find now. 
 
