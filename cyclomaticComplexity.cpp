@@ -6,13 +6,14 @@
 #include <algorithm>
 #include <cctype>
 
-#define KEY_VALUE 6
+#define KEY_VALUE 8
 #define STRING_SIZE 32
 bool FoundKey = false;
 using namespace std;
 ifstream Code;
 string rowOfCode;
-string KEYS[KEY_VALUE] = {"if(","while(","for(","?", "&&","||"};
+string KEYS[KEY_VALUE] = {"if(","while(","for(","?", "&&","||","case","default:"};
+
 int cyclomaticComplexityVal = 0;
 int main(){
 
@@ -35,15 +36,28 @@ while(!Code.eof()){
                     break;
                 }
                 
+                
             int tempRowIterator = rowIterator+1; // temp row iterator. If it finds a key, simply goes afterwards of found key.
             for(int letterOfKeyIterator = 1;letterOfKeyIterator<KEYS[keysIterator].length();letterOfKeyIterator++){ // here we controlling key and letter if really meshes together
                 if(KEYS[keysIterator][letterOfKeyIterator] == rowOfCode[tempRowIterator]){// if continues to mesh, just control until end
                     
                     if(letterOfKeyIterator == KEYS[keysIterator].length()-1 && KEYS[keysIterator].at(KEYS[keysIterator].length()-1) == rowOfCode[tempRowIterator]){ // if last letter also meshes
+                    if(keysIterator==6){
+                        for(int i = 0;i<rowOfCode.length()-tempRowIterator;i++){
+                            if(rowOfCode[tempRowIterator+i] == ':'){
+                        cyclomaticComplexityVal++; // increase complexity value
+                        rowIterator = tempRowIterator+1;// continue from afterwards of found key
+                        FoundKey = true; // yeah that's what you're searching for. if i don't put that condition it continues to iterate keys. I and nobody don't want that
+                        break;
+                            }
+                        }
+                    }
+                    else{
                         cyclomaticComplexityVal++; // increase complexity value
                         rowIterator = tempRowIterator+1;// continue from afterwards of found key
                         FoundKey = true; // yeah that's what you're searching for. if i don't put that condition it continues to iterate keys. I and nobody don't want that
                         break; // go out from letter iteration
+                        }
                     }
                     tempRowIterator++;
 
