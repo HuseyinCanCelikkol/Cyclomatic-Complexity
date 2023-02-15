@@ -13,7 +13,7 @@ int main(){
     Code.open("temp.txt");
     while(!Code.eof()){
         getline(Code, rowOfCode, '\n');
-       // rowOfCode.erase(remove_if(rowOfCode.begin(), rowOfCode.end(), ::isspace), rowOfCode.end()); //boşlukları siler
+       // rowOfCode.erase(remove_if(rowOfCode.begin(), rowOfCode.end(), ::isspace), rowOfCode.end()); //deletes whitespaces 
         for(int i = 0;i<rowOfCode.length();i++){
             if(rowOfCode[i] == '/' && rowOfCode[i+1] == '/'){
                 rowOfCode.erase(rowOfCode.begin()+i, rowOfCode.end());
@@ -23,7 +23,7 @@ int main(){
                 bool multiCommLine = true;
                 while(multiCommLine){
                     getline(Code, rowOfCode, '\n');
-                    //cout << rowOfCode << endl;
+                    //cout << rowOfCode << endl; // for debug
                     for(int j = 0;j<rowOfCode.length();j++){
                         if(rowOfCode[j] == '*' && rowOfCode[j+1] == '/'){
                             rowOfCode.erase(rowOfCode.begin(),rowOfCode.begin()+(j+2));
@@ -32,8 +32,6 @@ int main(){
                         else if(j == rowOfCode.length() -1){
                             rowOfCode.erase(rowOfCode.begin(),rowOfCode.end());
                         }
-
-
                     }
                 }
             }

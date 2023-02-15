@@ -1,0 +1,82 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <istream>
+#include <ostream>
+#include <algorithm>
+#include <cctype>
+
+#define LANGUAGE_COUNT 6
+#define KEY_SIZE 8
+#define STRING_SIZE 32
+
+bool FoundKey = false;
+using namespace std;
+ifstream Code;
+string rowOfCode;
+string CPP_KEYS[] = {"if(","while(","for(","?", "&&","||","case","default:"};
+
+int cyclomaticComplexityVal = 0;
+int main(){
+
+Code.open("temp.txt"); 
+
+
+while(!Code.eof()){
+    getline(Code, rowOfCode, '\n'); 
+    rowOfCode.erase(remove_if(rowOfCode.begin(), rowOfCode.end(), ::isspace), rowOfCode.end()); 
+    
+
+   for(int rowIterator = 0;rowIterator<rowOfCode.length();rowIterator++){ 
+        for(int keysIterator = 0;keysIterator<sizeof(CPP_KEYS)/STRING_SIZE;keysIterator++){
+            if(FoundKey == true){ 
+                FoundKey = false;
+                break;
+                } 
+            if(CPP_KEYS[keysIterator][0] == rowOfCode[rowIterator]){
+                if(CPP_KEYS[keysIterator][0] == CPP_KEYS[3][0]){ 
+                    cyclomaticComplexityVal++;
+                    break;
+                }
+                
+                
+            int tempRowIterator = rowIterator+1; 
+            for(int letterOfKeyIterator = 1;letterOfKeyIterator<CPP_KEYS[keysIterator].length();letterOfKeyIterator++){ 
+                if(CPP_KEYS[keysIterator][letterOfKeyIterator] == rowOfCode[tempRowIterator]){
+                    
+                    if(letterOfKeyIterator == CPP_KEYS[keysIterator].length()-1 && CPP_KEYS[keysIterator].at(CPP_KEYS[keysIterator].length()-1) == rowOfCode[tempRowIterator]){ 
+                    if(keysIterator==6){
+                        for(int i = 0;i<rowOfCode.length()-tempRowIterator;i++){
+                            if(rowOfCode[tempRowIterator+i] == ':'){ 
+                        cyclomaticComplexityVal++; 
+                        rowIterator = tempRowIterator+1;
+                        FoundKey = true; 
+                        break;
+                            }
+                        }
+                    }
+                    else{
+                        cyclomaticComplexityVal++; 
+                        rowIterator = tempRowIterator+1;
+                        FoundKey = true; 
+                        break; 
+                        }
+                    }
+                    tempRowIterator++;
+
+                    }
+                    else{break; 
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+cyclomaticComplexityVal = cyclomaticComplexityVal+1; 
+cout << cyclomaticComplexityVal << endl; 
+
+Code.close(); 
+}
+
