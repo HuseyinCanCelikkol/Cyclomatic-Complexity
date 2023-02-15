@@ -20,7 +20,7 @@ int cyclomaticComplexityVal = 0;
 int CodeLineVal=0;
 int main(){
 
-Code.open("temp.txt"); // open the txt
+Code.open("code.txt"); // open the txt
 
 
 while(!Code.eof()){

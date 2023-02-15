@@ -10,7 +10,7 @@ string rowOfCode;
 ifstream Code;
 ofstream MyFile("CodeWithoutComments.txt");
 int main(){
-    Code.open("temp.txt");
+    Code.open("code.txt");
     while(!Code.eof()){
         getline(Code, rowOfCode, '\n');
        // rowOfCode.erase(remove_if(rowOfCode.begin(), rowOfCode.end(), ::isspace), rowOfCode.end()); //deletes whitespaces 
